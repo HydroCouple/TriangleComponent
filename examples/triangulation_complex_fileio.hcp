@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HydroCoupleProject name="triangulation_complex_fileio.hcp">
+    <ModelComponents>
+        <ModelComponent Name="Triangle Component 1.6" IsTrigger="True" ModelComponentLibrary="../build/debug/libTriangleComponent.1.0.0.dylib" XPos="-302.043" YPos="-148.674">
+            <Arguments>
+                <Argument Id="Identifiers" ArgumentIOType="String">
+                    <IdBasedArgument Id="Identifiers" Caption="Model Identifiers" IsOptional="False">
+                        <ValueDefinition Type="Quantity" ValueType="QString" MissingValue="" DefaultValue="">
+                            <Unit ConversionFactorToSI="1" OffsetToSI="0"/>
+                        </ValueDefinition>
+                        <Dimensions>
+                            <Dimension Id="IdentifierDimension" Caption="Dimension for identifiers" Length="3"/>
+                        </Dimensions>
+                        <Values>
+                            <Value Id="Id">Logan Triangulation</Value>
+                            <Value Id="Caption">Triangulation with edges and holes</Value>
+                            <Value Id="Description"/>
+                        </Values>
+                    </IdBasedArgument>
+                </Argument>
+                <Argument Id="TriangleSwitches" ArgumentIOType="String">
+                    <Argument1D Id="TriangleSwitches" Caption="Triangle Component Switches" IsOptional="False">
+                        <!--The command switches to use for triangulation. See https://www.cs.cmu.edu/~quake/triangle.help.html for details.-->
+                        <ValueDefinition Type="Quantity" ValueType="QString" MissingValue="" DefaultValue="">
+                            <Unit ConversionFactorToSI="1" OffsetToSI="0"/>
+                        </ValueDefinition>
+                        <Dimensions>
+                            <Dimension Id="TriangleSwitchesDimension" Caption="" Length="1"/>
+                        </Dimensions>
+                        <Values>
+                            <Value>pqYzc</Value>
+                        </Values>
+                    </Argument1D>
+                </Argument>
+                <Argument Id="TrigulationPoints" ArgumentIOType="String">
+                    <GeometryArgument Id="TrigulationPoints" Caption="Triangulation Points" IsOptional="False">
+                        <ValueDefinition Type="Quantity" ValueType="QString" MissingValue="" DefaultValue="">
+                            <Unit ConversionFactorToSI="1" OffsetToSI="0"/>
+                        </ValueDefinition>
+                        <Dimensions>
+                            <Dimension Id="TnputGeometryDimension" Caption=""/>
+                        </Dimensions>
+                        <Geometries GeometryType="PointZ" IsFromFile="True" GeometryFileDataField="">../../examples/sample_points.shp</Geometries>
+                    </GeometryArgument>
+                </Argument>
+                <Argument Id="ConstrainingEdges" ArgumentIOType="String">
+                    <GeometryArgument Id="ConstrainingEdges" Caption="Triangulation Constraining Edges" IsOptional="False">
+                        <ValueDefinition Type="Quantity" ValueType="QString" MissingValue="" DefaultValue="">
+                            <Unit ConversionFactorToSI="1" OffsetToSI="0"/>
+                        </ValueDefinition>
+                        <Dimensions>
+                            <Dimension Id="TnputGeometryDimension" Caption=""/>
+                        </Dimensions>
+                        <Geometries GeometryType="LineStringZ" IsFromFile="True" GeometryFileDataField="Id">../../examples/edge.shp</Geometries>
+                    </GeometryArgument>
+                </Argument>
+                <Argument Id="BoundaryPolygonEdges" ArgumentIOType="String">
+                    <GeometryArgument Id="BoundaryPolygonEdges" Caption="Triangulation Boundary Polygons" IsOptional="False">
+                        <ValueDefinition Type="Quantity" ValueType="QString" MissingValue="" DefaultValue="">
+                            <Unit ConversionFactorToSI="1" OffsetToSI="0"/>
+                        </ValueDefinition>
+                        <Dimensions>
+                            <Dimension Id="TnputGeometryDimension" Caption=""/>
+                        </Dimensions>
+                        <Geometries GeometryType="PolygonZ" IsFromFile="True" GeometryFileDataField="Id">../../examples/hole.shp</Geometries>
+                    </GeometryArgument>
+                </Argument>
+                <Argument Id="HoleLocations" ArgumentIOType="String">
+                    <GeometryArgument Id="HoleLocations" Caption="Triangulation Hole Locations" IsOptional="False">
+                        <ValueDefinition Type="Quantity" ValueType="QString" MissingValue="" DefaultValue="">
+                            <Unit ConversionFactorToSI="1" OffsetToSI="0"/>
+                        </ValueDefinition>
+                        <Dimensions>
+                            <Dimension Id="TnputGeometryDimension" Caption=""/>
+                        </Dimensions>
+                        <Geometries GeometryType="PointZ" IsFromFile="False">
+                            <Geometry>POINT Z (1528657.065 3799281.404 1347.83744)</Geometry>
+                        </Geometries>
+                        <Values>
+                            <Value>0.000000</Value>
+                        </Values>
+                    </GeometryArgument>
+                </Argument>
+                <Argument Id="ThinningOptionArgument" ArgumentIOType="String">
+                    <IdBasedArgument Id="ThinningOptionArgument" Caption="Thinning Options Argument" IsOptional="False">
+                        <!--ThinningMode: Not 1 or 2 = None thinning, 1 = VolumeChangeCriteria, 2 = NormalVectorCriteria-->
+                        <!--CriteriaValue: For the VolumeChangeCriteria option this value represents the minimum fraction of volume change below which surface a surface is considered flat. For the NormalVectorCriteria option a number close to 1 signifies flat-->
+                        <!--MaxNumberThinningIterations: Maximum number of iterations per thinning cycle. If not specified, the thinning process repeats until there is no eligible vertex candidate for removal-->
+                        <!--MaxNumberPointsPerThinningIteration: Maximum number of eligible points to sample per iterations-->
+                        <ValueDefinition Type="Quantity" ValueType="double" MissingValue="" DefaultValue="">
+                            <Unit ConversionFactorToSI="1" OffsetToSI="0"/>
+                        </ValueDefinition>
+                        <Dimensions>
+                            <Dimension Id="ThinningOptionDimension" Caption="Dimension for thinning options" Length="4"/>
+                        </Dimensions>
+                        <Values>
+                            <Value Id="ThinningMode">2</Value>
+                            <Value Id="CriteriaValue">0.985</Value>
+                            <Value Id="MaxNumberThinningIterations">100</Value>
+                            <Value Id="MaxNumberPointsPerThinningIteration">1000</Value>
+                        </Values>
+                    </IdBasedArgument>
+                </Argument>
+                <Argument Id="OutputOptions" ArgumentIOType="String">
+                    <IdBasedArgument Id="OutputOptions" Caption="Output Options" IsOptional="False">
+                        <!--WriteOutput : Yes, True, or 1. Everything else treated as false. Valid path for NetCDF file must be specified-->
+                        <!--GDALDriverName : The name of the GDAL driver to use to write vector outputs. Default is ESRI Shapefile-->
+                        <!--WriteOutputVertices : Yes, True, or 1. Everything else treated as false. Valid GDALDriverName must be specified. Valid OutputVerticesFilePath must also be specified-->
+                        <!--WriteOutputTriangles : Yes, True, or 1. Everything else treated as false. Valid GDALDriverName must be specified. Valid OutputTrianglesFilePath must also be specified-->
+                        <!--WriteOutputVerticesToCSV : Yes, True, or 1. Everything else treated as false. Valid OutputVerticeCSVFilePath must also be specified-->
+                        <ValueDefinition Type="Quantity" ValueType="QString" MissingValue="" DefaultValue="">
+                            <Unit ConversionFactorToSI="1" OffsetToSI="0"/>
+                        </ValueDefinition>
+                        <Dimensions>
+                            <Dimension Id="OutputFileDimension" Caption="Dimension for outputFile" Length="9"/>
+                        </Dimensions>
+                        <Values>
+                            <Value Id="WriteOutput">no</Value>
+                            <Value Id="NetCDFOutputFilePath"/>
+                            <Value Id="GDALDriverName">ESRI Shapefile</Value>
+                            <Value Id="WriteOutputVertices">Yes</Value>
+                            <Value Id="OutputVerticesFilePath">../../examples/output_vertices.shp</Value>
+                            <Value Id="WriteOutputTriangles">Yes</Value>
+                            <Value Id="OutputTrianglesFilePath">../../examples/output_polygons.shp</Value>
+                            <Value Id="WriteOutputVerticesToCSV">Yes</Value>
+                            <Value Id="OutputVerticeCSVFilePath">../../examples/output_points.csv</Value>
+                        </Values>
+                    </IdBasedArgument>
+                </Argument>
+            </Arguments>
+        </ModelComponent>
+    </ModelComponents>
+    <ModelComponentConnections/>
+</HydroCoupleProject>

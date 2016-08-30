@@ -4,12 +4,21 @@
 #License Same as Shewchucks'.
 #Triangulation Component
 
-TEMPLATE = lib
-TARGET   = TriangleComponent
-QT      -= gui
 
 DEFINES += TRIANGLECOMPONENT_LIBRARY
 
+contains(DEFINES,TRIANGLECOMPONENT_LIBRARY){
+  TEMPLATE = lib
+  message("Compiling as library")
+} else {
+  TEMPLATE = app
+  CONFIG-=app_bundle
+  message("Compiling as application")
+}
+
+VERSION = 1.0.0.0
+TARGET   = TriangleComponent
+QT      += core concurrent
 
 INCLUDEPATH += .\
                ./include \
@@ -21,11 +30,22 @@ PRECOMPILED_HEADER = ./include/stdafx.h
 HEADERS += ./include/stdafx.h\
            ./include/trianglecomponent_global.h \
            ./include/core/triangle.h \
-           ./include/component/trianglecomponent.h
+           ./include/component/trianglecomponent.h \
+           ./include/component/trianglecomponentinfo.h
 
 SOURCES += ./src/stdafx.cpp \
            ./src/core/triangle.c \
-           ./src/component/trianglecomponent.cpp
+           ./src/core/tricall.c \
+           ./src/component/trianglecomponent.cpp \
+           ./src/component/trianglecomponentinfo.cpp \
+           ./src/main.cpp
+
+
+macx{
+INCLUDEPATH += /usr/local \
+               /usr/local/include
+
+}
 
 
 CONFIG(debug, debug|release) {
@@ -37,7 +57,7 @@ CONFIG(debug, debug|release) {
    UI_DIR = $$DESTDIR/.ui
 
    macx{
-    LIBS += -L./../HydroCoupleSDK/build/debug -lHydroCoupleSDK.1.0.0
+    LIBS += -L./../HydroCoupleSDK/build/debug -lHydroCoupleSDK
    }
 }
 
@@ -51,6 +71,6 @@ CONFIG(release, debug|release) {
     UI_DIR = $$RELEASE_EXTRAS/.ui
 
    macx{
-    LIBS += -L./../HydroCoupleSDK/lib -lHydroCoupleSDK.1.0.0
+    LIBS += -L./../HydroCoupleSDK/lib -lHydroCoupleSDK
    }
 }
