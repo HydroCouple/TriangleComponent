@@ -2,7 +2,7 @@
 A HydroCouple Delaunay triangulation tool developed from 
 Jonathan Shewchuk's Triangle code.
 
-# Traingle Licensing Information
+## Traingle Licensing Information
 Triangle
 A Two-Dimensional Quality Mesh Generator and Delaunay Triangulator.
 Version 1.6
@@ -202,5 +202,5 @@ Computational Geometry.)'
 Jonathan Richard Shewchuk
 July 27, 2005
 
-# CITATION
+## CITATION
 Shewchuk, J.R., 1996. Triangle: Engineering a 2D Quality Mesh Generator and Delaunay Triangulator. Applied Computational Geometry towards Geometric Engineering. Springer, pp. 203–222.
