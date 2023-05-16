@@ -2,7 +2,7 @@
 A HydroCouple Delaunay triangulation tool developed from 
 Jonathan Shewchuk's Triangle code.
 
-#LICENSING INFO
+# Traingle Licensing Information
 Triangle
 A Two-Dimensional Quality Mesh Generator and Delaunay Triangulator.
 Version 1.6
